@@ -1,0 +1,10 @@
+{
+  "name": "KonstantinSavusia.com",
+  "short_name": "KS",
+  "theme_color": "#8bd8bd",
+  "background_color": "#243665",
+  "display": "browser",
+  "scope": "/",
+  "start_url": "/",
+  "splash_pages": null
+}
