@@ -3,6 +3,7 @@ import path from 'path'
 import cors from 'cors'
 import sockjs from 'sockjs'
 import cookieParser from 'cookie-parser'
+import axios from 'axios'
 import { readFile } from 'fs/promises'
 
 import config from './config'
@@ -38,6 +39,17 @@ server.get('/api/v1/products', async (req, res) => {
     .catch((err) => console.log(err))
 
   res.json(productsArray.slice(0, 50))
+})
+
+const exchangeRateUrl = 'https://api.exchangerate.host/latest?base=USD&symbols=USD,EUR,CAD'
+const mockExchangeRate = { CAD: 1.36, EUR: 1.03, USD: 1 }
+
+server.get('/api/v1/currency', async (req, res) => {
+  const currency = await axios(exchangeRateUrl)
+    .then(({ data }) => data.rates)
+    .catch(() => mockExchangeRate)
+
+  res.json(currency)
 })
 
 server.get('/*', (req, res) => {
