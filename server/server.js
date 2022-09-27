@@ -3,6 +3,7 @@ import path from 'path'
 import cors from 'cors'
 import sockjs from 'sockjs'
 import cookieParser from 'cookie-parser'
+import { readFile } from 'fs/promises'
 
 import config from './config'
 import Html from '../client/html'
@@ -29,6 +30,14 @@ server.get('/', (req, res) => {
     <h2>This is Express Server!</h2>
     <h3>Client hosted at <a href="http://localhost:8087">localhost:8087</a>!</h3>
   `)
+})
+
+server.get('/api/v1/products', async (req, res) => {
+  const productsArray = await readFile(`${__dirname}/data/products.json`, 'utf-8')
+    .then((data) => JSON.parse(data))
+    .catch((err) => console.log(err))
+
+  res.json(productsArray.slice(0, 50))
 })
 
 server.get('/*', (req, res) => {
