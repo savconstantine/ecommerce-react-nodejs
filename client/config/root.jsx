@@ -6,6 +6,7 @@ import { Switch, Route, Redirect, StaticRouter } from 'react-router-dom'
 import store, { history } from '../redux'
 
 import Main from '../components/main'
+import Cart from '../components/cart'
 import NotFound from '../components/404'
 
 import Startup from './startup'
@@ -48,6 +49,7 @@ const RootComponent = (props) => {
         <Startup>
           <Switch>
             <Route exact path="/" component={Main} />
+            <Route exact path="/cart" component={Cart} />
 
             <PrivateRoute exact path="/hidden-route" component={Main} />
             <OnlyAnonymousRoute exact path="/anonymous-route" component={Main} />
