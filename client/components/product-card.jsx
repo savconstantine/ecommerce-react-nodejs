@@ -1,6 +1,12 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 const ProductCard = ({ product }) => {
+  const currentCurrency = useSelector((state) => state.settings.currentCurrency)
+  const curreciesRates = useSelector((state) => state.settings.currencies)
+
+  const price = (product.price * curreciesRates[currentCurrency]).toFixed(2)
+
   return (
     <div className="card w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
       <a href="#">
@@ -77,7 +83,7 @@ const ProductCard = ({ product }) => {
         </div>
         <div className="flex justify-between items-center">
           <span className="card__price text-3xl font-bold text-gray-900 dark:text-white">
-            {product.price}
+            {currentCurrency} {price}
           </span>
           <button
             type="button"
