@@ -1,9 +1,12 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import CurrencyBtnGroup from './currency-btn-group'
 
 const Header = (props) => {
+  const { totalAmount, totalPrice } = useSelector((state) => state.cart)
+
   return (
     <header className="bg-gray-700 sm:px-4 sm:py-3 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]">
       <div className="max-w-screen-lg mx-auto sm:flex sm:justify-between sm:items-center text-gray-100">
@@ -34,7 +37,10 @@ const Header = (props) => {
             />
           </svg>
           <span id="order-count" className="ml-2">
-            0
+            {totalAmount}
+          </span>
+          <span id="order-price" className="ml-2">
+            {totalPrice}
           </span>
         </Link>
       </div>

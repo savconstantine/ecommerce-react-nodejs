@@ -1,9 +1,14 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { addToCart } from '../redux/reducers/cart'
 
 const ProductCard = ({ product }) => {
+  const dispatch = useDispatch()
+
   const currentCurrency = useSelector((state) => state.settings.currentCurrency)
   const curreciesRates = useSelector((state) => state.settings.currencies)
+  const cartList = useSelector((state) => state.cart.list)
 
   const price = (product.price * curreciesRates[currentCurrency]).toFixed(2)
 
@@ -85,8 +90,12 @@ const ProductCard = ({ product }) => {
           <span className="card__price text-3xl font-bold text-gray-900 dark:text-white">
             {currentCurrency} {price}
           </span>
+          <span className="card__price text-md font-bold text-gray-900 dark:text-white">
+            {cartList[product.id]?.amount}
+          </span>
           <button
             type="button"
+            onClick={() => dispatch(addToCart(product.id))}
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Add to cart
