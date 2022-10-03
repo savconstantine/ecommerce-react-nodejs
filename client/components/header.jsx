@@ -6,6 +6,10 @@ import CurrencyBtnGroup from './currency-btn-group'
 
 const Header = (props) => {
   const { totalAmount, totalPrice } = useSelector((state) => state.cart)
+  const { currentCurrency } = useSelector((state) => state.settings)
+  const { currencies } = useSelector((state) => state.settings)
+
+  const price = (totalPrice * currencies[currentCurrency]).toFixed(2)
 
   return (
     <header className="bg-gray-700 sm:px-4 sm:py-3 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]">
@@ -40,7 +44,7 @@ const Header = (props) => {
             {totalAmount}
           </span>
           <span id="order-price" className="ml-2">
-            {totalPrice}
+            {price} {currentCurrency}
           </span>
         </Link>
       </div>
