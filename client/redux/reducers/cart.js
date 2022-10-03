@@ -13,7 +13,7 @@ export default (state = initialState, action = {}) => {
     case ADD_TO_CART:
       return {
         ...state,
-        list: action.payload,
+        list: action.payload.list,
         totalAmount: state.totalAmount + 1,
         totalPrice: state.totalPrice + action.payload.price
       }
@@ -27,14 +27,12 @@ export const addToCart = (id) => {
     const { list } = getState().cart
     const procuctList = getState().products.list
     const { price } = procuctList.find((product) => product.id === id)
-    console.log(price)
     const itemAmount = typeof list[id] === 'undefined' ? 1 : list[id].amount + 1
 
     return dispatch({
       type: ADD_TO_CART,
       payload: {
-        ...list,
-        [id]: { ...list[id], amount: itemAmount },
+        list: { ...list, [id]: { ...list[id], amount: itemAmount } },
         price
       }
     })
