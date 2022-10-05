@@ -17,11 +17,16 @@ export default (state = initialState, action = {}) => {
 
 export const getProductsFromServer = () => {
   return async (dispatch) => {
-    const { data } = await axios.get('/api/v1/products')
+    const result = await axios.get('/api/v1/products').then(({ data }) =>
+      data.reduce((acc, item) => {
+        acc[item.id] = item
+        return acc
+      }, {})
+    )
 
     dispatch({
       type: GET_PRODUCTS,
-      payload: data
+      payload: result
     })
   }
 }

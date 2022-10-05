@@ -14,7 +14,7 @@ const Products = () => {
 
   return (
     <div className="flex flex-wrap gap-2 max-w-screen-lg mx-auto justify-center pt-10">
-      {productList.map((product) => (
+      {Object.values(productList).map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>

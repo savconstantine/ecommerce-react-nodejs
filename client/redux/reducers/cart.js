@@ -25,8 +25,7 @@ export default (state = initialState, action = {}) => {
 export const addToCart = (id) => {
   return (dispatch, getState) => {
     const { list } = getState().cart
-    const procuctList = getState().products.list
-    const { price } = procuctList.find((product) => product.id === id)
+    const { price } = getState().products.list[id]
     const itemAmount = typeof list[id] === 'undefined' ? 1 : list[id].amount + 1
 
     return dispatch({
