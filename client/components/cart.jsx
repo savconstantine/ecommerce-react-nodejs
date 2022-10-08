@@ -12,7 +12,7 @@ const Cart = () => {
       <Head title="Cart" />
       <Header title="Cart" />
       <div className="flex flex-wrap gap-2 max-w-screen-lg mx-auto justify-center pt-10">
-        <TableCart data={Object.keys(productsInCart)} />
+        <TableCart data={Object.values(productsInCart)} />
       </div>
     </>
   )
