@@ -8,9 +8,12 @@ import ProductsSortDropdown from './products-sort-dropdown'
 const Products = () => {
   const productList = useSelector((state) => state.products.list)
   const dispatch = useDispatch()
+  const productListArray = Object.values(productList)
 
   useEffect(() => {
-    dispatch(getProductsFromServer())
+    if (productListArray.length === 0) {
+      dispatch(getProductsFromServer())
+    }
   }, [])
 
   return (
@@ -19,7 +22,7 @@ const Products = () => {
         <ProductsSortDropdown />
       </div>
       <div className="flex flex-wrap gap-2 max-w-screen-lg mx-auto justify-center pt-10">
-        {Object.values(productList).map((product) => (
+        {productListArray.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
