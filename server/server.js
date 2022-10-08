@@ -38,6 +38,7 @@ server.get('/api/v1/products', async (req, res) => {
 })
 
 server.post('/api/v1/products/sort', async (req, res) => {
+  console.log(req.body)
   const productsArray = await getProducts()
   const { sort, order } = req.body
   const sortedProducts = sortProductsList(productsArray, sort, order)

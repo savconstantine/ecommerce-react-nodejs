@@ -6,14 +6,15 @@ import { changeItemAmountInCart, removeFromCart } from '../../redux/reducers/car
 const TableCartRow = ({ id }) => {
   const dispatch = useDispatch()
 
-  const product = useSelector((state) => state.products.list[id])
   const currentCurrency = useSelector((state) => state.settings.currentCurrency)
   const curreciesRates = useSelector((state) => state.settings.currencies)
   const productInCart = useSelector((state) => state.cart.list[id])
 
-  const price = ((product && product.price) * curreciesRates[currentCurrency]).toFixed(2)
+  const price = ((productInCart && productInCart.price) * curreciesRates[currentCurrency]).toFixed(
+    2
+  )
   const totalPrice = (
-    (product && product.price) *
+    (productInCart && productInCart.price) *
     productInCart.amount *
     curreciesRates[currentCurrency]
   ).toFixed(2)
@@ -21,10 +22,10 @@ const TableCartRow = ({ id }) => {
   return (
     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
       <td className="p-4 w-32">
-        <img src={product.image} alt={product.title} className="product__image" />
+        <img src={productInCart.image} alt={productInCart.title} className="product__image" />
       </td>
       <td className="product__title py-4 px-6 font-semibold text-gray-900 dark:text-white">
-        {product.title}
+        {productInCart.title}
       </td>
       <td className="product__price py-4 px-6 font-semibold text-gray-900 dark:text-white">
         {currentCurrency} {price}
