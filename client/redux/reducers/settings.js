@@ -31,10 +31,13 @@ export const getCurrenciesFromServer = () => {
 }
 
 export const setCurrentCurrency = (currency) => {
-  return (dispatch) => {
-    dispatch({
-      type: SET_CURRENT_CURRENCY,
-      payload: currency
-    })
+  return (dispatch, getState) => {
+    const { currentCurrency } = getState().settings
+    if (currentCurrency !== currency) {
+      dispatch({
+        type: SET_CURRENT_CURRENCY,
+        payload: currency
+      })
+    }
   }
 }
