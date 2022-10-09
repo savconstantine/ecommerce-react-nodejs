@@ -41,7 +41,10 @@ const LoggingMiddleware = () => {
           case '@@router/LOCATION_CHANGE':
             {
               const url = action.payload.location.pathname
-              console.log(`navigate to ${url} page`)
+              dispatch({
+                type: LOG_UPDATE,
+                payload: `navigate to ${url} page`
+              })
             }
             break
           default:
