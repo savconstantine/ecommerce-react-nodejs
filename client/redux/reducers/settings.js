@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const GET_CURRENCIES = '@settings/GET_CURRENCIES'
-const SET_CURRENT_CURRENCY = '@settings/SET_CURRENT_CURRENCY'
+export const SET_CURRENT_CURRENCY = '@settings/SET_CURRENT_CURRENCY'
 
 const initialState = {
   currencies: { USD: 1 },
