@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const GET_PRODUCTS = 'GET_PRODUCTS'
-const SET_SORT_INFO = 'SET_SORT_INFO'
+export const SET_SORT_INFO = 'SET_SORT_INFO'
 
 const initialState = {
   list: {},

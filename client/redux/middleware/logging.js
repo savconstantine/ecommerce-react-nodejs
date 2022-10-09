@@ -1,5 +1,6 @@
 import { SET_CURRENT_CURRENCY } from '../reducers/settings'
 import { ADD_TO_CART, REMOVE_FROM_CART, INCREASE_AMOUNT, DECREASE_AMOUNT } from '../reducers/cart'
+import { SET_SORT_INFO } from '../reducers/products'
 
 import { LOG_UPDATE } from '../reducers/log'
 
@@ -35,6 +36,14 @@ const LoggingMiddleware = () => {
             dispatch({
               type: LOG_UPDATE,
               payload: `Remove item ${item.title} from the cart`
+            })
+            break
+          }
+          case SET_SORT_INFO: {
+            const { sort, order } = action.payload
+            dispatch({
+              type: LOG_UPDATE,
+              payload: `Sort products list by ${sort} in ${order} order`
             })
             break
           }
