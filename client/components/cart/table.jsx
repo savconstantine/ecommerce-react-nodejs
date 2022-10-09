@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { LOG_UPDATE } from '../../redux/reducers/log'
 
 import TableCartRow from './table-row'
 
 const TableCart = ({ data }) => {
   const [sort, setSort] = useState('name')
   const [order, setOrder] = useState(true)
+  const dispatch = useDispatch()
 
   const { totalAmount, totalPrice } = useSelector((state) => state.cart)
   const { currentCurrency } = useSelector((state) => state.settings)
@@ -16,6 +18,10 @@ const TableCart = ({ data }) => {
   const setSortBy = (newSort) => {
     setSort(newSort)
     setOrder(!order)
+    dispatch({
+      type: LOG_UPDATE,
+      payload: `Sort products list in cart by ${sort} in ${order ? 'asc' : 'desc'} order`
+    })
   }
 
   const sortProductsList = (products) => {
