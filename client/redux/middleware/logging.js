@@ -10,6 +10,12 @@ const LoggingMiddleware = () => {
     const { dispatch, getState } = store
     return (next) => {
       return (action) => {
+        const getDate = () => {
+          const date = new Date()
+          return `${date.getFullYear()}-${
+            date.getMonth() + 1
+          }-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+        }
         switch (action.type) {
           case SET_CURRENT_CURRENCY:
             {
@@ -17,7 +23,7 @@ const LoggingMiddleware = () => {
               const newCurrency = action.payload
               dispatch({
                 type: LOG_UPDATE,
-                payload: `Currency changed from ${currentCurrency} to ${newCurrency}`
+                payload: `${getDate()} - Currency changed from ${currentCurrency} to ${newCurrency}`
               })
             }
             break
@@ -26,7 +32,7 @@ const LoggingMiddleware = () => {
             const item = action.payload.product
             dispatch({
               type: LOG_UPDATE,
-              payload: `Add item ${item.title} to the cart`
+              payload: `${getDate()} - Add item ${item.title} to the cart`
             })
             break
           }
@@ -35,7 +41,7 @@ const LoggingMiddleware = () => {
             const item = action.payload.product
             dispatch({
               type: LOG_UPDATE,
-              payload: `Remove item ${item.title} from the cart`
+              payload: `${getDate()} - Remove item ${item.title} from the cart`
             })
             break
           }
@@ -43,7 +49,7 @@ const LoggingMiddleware = () => {
             const { sort, order } = action.payload
             dispatch({
               type: LOG_UPDATE,
-              payload: `Sort products list by ${sort} in ${order} order`
+              payload: `${getDate()} - Sort products list by ${sort} in ${order} order`
             })
             break
           }
@@ -52,7 +58,7 @@ const LoggingMiddleware = () => {
               const url = action.payload.location.pathname
               dispatch({
                 type: LOG_UPDATE,
-                payload: `navigate to ${url} page`
+                payload: `${getDate()} - navigate to ${url} page`
               })
             }
             break

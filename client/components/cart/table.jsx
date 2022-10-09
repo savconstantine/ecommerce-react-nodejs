@@ -18,9 +18,17 @@ const TableCart = ({ data }) => {
   const setSortBy = (newSort) => {
     setSort(newSort)
     setOrder(!order)
+    const getDate = () => {
+      const date = new Date()
+      return `${date.getFullYear()}-${
+        date.getMonth() + 1
+      }-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+    }
     dispatch({
       type: LOG_UPDATE,
-      payload: `Sort products list in cart by ${sort} in ${order ? 'asc' : 'desc'} order`
+      payload: `${getDate} - Sort products list in cart by ${sort} in ${
+        order ? 'asc' : 'desc'
+      } order`
     })
   }
 
