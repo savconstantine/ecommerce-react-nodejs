@@ -1,5 +1,5 @@
 import { SET_CURRENT_CURRENCY } from '../reducers/settings'
-import { ADD_TO_CART } from '../reducers/cart'
+import { ADD_TO_CART, REMOVE_FROM_CART, INCREASE_AMOUNT, DECREASE_AMOUNT } from '../reducers/cart'
 
 import { LOG_UPDATE } from '../reducers/log'
 
@@ -20,7 +20,8 @@ const LoggingMiddleware = () => {
               })
             }
             break
-          case ADD_TO_CART: {
+          case ADD_TO_CART:
+          case INCREASE_AMOUNT: {
             const item = action.payload.product
             dispatch({
               type: LOG_UPDATE,
@@ -28,7 +29,15 @@ const LoggingMiddleware = () => {
             })
             break
           }
-
+          case REMOVE_FROM_CART:
+          case DECREASE_AMOUNT: {
+            const item = action.payload.product
+            dispatch({
+              type: LOG_UPDATE,
+              payload: `Remove item ${item.title} from the cart`
+            })
+            break
+          }
           case '@@router/LOCATION_CHANGE':
             {
               const url = action.payload.location.pathname
