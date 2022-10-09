@@ -4,6 +4,7 @@ import auth from './auth'
 import products from './products'
 import settings from './settings'
 import cart from './cart'
+import log from './log'
 
 const createRootReducer = (history) =>
   combineReducers({
@@ -11,7 +12,8 @@ const createRootReducer = (history) =>
     auth,
     settings,
     cart,
-    products
+    products,
+    log
   })
 
 export default createRootReducer
