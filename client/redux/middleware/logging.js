@@ -1,4 +1,5 @@
 import { SET_CURRENT_CURRENCY } from '../reducers/settings'
+import { ADD_TO_CART } from '../reducers/cart'
 
 import { LOG_UPDATE } from '../reducers/log'
 
@@ -19,6 +20,15 @@ const LoggingMiddleware = () => {
               })
             }
             break
+          case ADD_TO_CART: {
+            const item = action.payload.product
+            dispatch({
+              type: LOG_UPDATE,
+              payload: `Add item ${item.title} to the cart`
+            })
+            break
+          }
+
           case '@@router/LOCATION_CHANGE':
             {
               const url = action.payload.location.pathname
