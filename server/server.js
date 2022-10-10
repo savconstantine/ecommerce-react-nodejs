@@ -32,6 +32,17 @@ server.get('/', (req, res) => {
   `)
 })
 
+const logs = []
+
+server.get('/api/v1/logs', async (req, res) => {
+  res.json(logs)
+})
+
+server.post('/api/v1/logs', async (req, res) => {
+  logs.push(req.body)
+  res.json(logs)
+})
+
 server.get('/api/v1/products', async (req, res) => {
   const productsArray = await getProducts()
   res.json(productsArray.slice(0, 50))
