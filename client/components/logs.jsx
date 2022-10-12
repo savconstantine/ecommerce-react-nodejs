@@ -1,18 +1,11 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
 
 import Head from './head'
 import Header from './header'
 
-import { getLogs } from '../redux/reducers/log'
-
 const Logs = () => {
-  const dispatch = useDispatch()
   const { logs } = useSelector((state) => state.log)
-
-  useEffect(() => {
-    dispatch(getLogs())
-  }, [])
 
   return (
     <>
