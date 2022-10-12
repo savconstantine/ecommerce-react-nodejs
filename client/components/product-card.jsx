@@ -11,13 +11,14 @@ const ProductCard = ({ product }) => {
   const cartList = useSelector((state) => state.cart.list)
 
   const price = (product.price * curreciesRates[currentCurrency]).toFixed(2)
+  const productImage = product.image + /\w+(?=\s)/gi.exec(product.title)
 
   return (
     <div className="card w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
       <a href="#">
         <img
           className="card__image p-8 rounded-t-lg object-cover w-full max-h-72"
-          src={product.image}
+          src={productImage}
           alt="product"
         />
       </a>
