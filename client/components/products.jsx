@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { getProductsFromServer } from '../redux/reducers/products'
 import ProductCard from './product-card'
-import ProductsSortDropdown from './products-sort-dropdown'
-import CurrencyBtnGroup from './currency-btn-group'
+import ProductsSortDropdown from './products/sort-dropdown'
+import CurrencyBtnGroup from './currency/currency-btn-group'
 
 const Products = () => {
   const productList = useSelector((state) => state.products.list)
@@ -19,10 +19,12 @@ const Products = () => {
 
   return (
     <>
-      <div className="flex max-w-screen-lg mx-auto justify-center pt-10">
-        <ProductsSortDropdown />
+      <div className="flex max-w-screen-lg mx-auto justify-evenly pt-10">
+
         <CurrencyBtnGroup />
+        <ProductsSortDropdown />
       </div>
+
       <div className="flex flex-wrap gap-2 max-w-screen-lg mx-auto justify-center pt-10">
         {productListArray.map((product) => (
           <ProductCard key={product.id} product={product} />

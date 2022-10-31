@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { getCurrenciesFromServer, setCurrentCurrency } from '../redux/reducers/settings'
-import useComponentVisible from '../hooks/useComponentVisible'
+import { getCurrenciesFromServer, setCurrentCurrency } from '../../redux/reducers/settings'
+import useComponentVisible from '../../hooks/useComponentVisible'
 
 const CurrencyDropdown = () => {
   const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false)

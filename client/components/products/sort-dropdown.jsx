@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { sortProducts } from '../redux/reducers/products'
+import { sortProducts } from '../../redux/reducers/products'
 
 const ProductsSortDropdown = () => {
   const [isOpen, setIsOpen] = useState(false)

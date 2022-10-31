@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import CurrencyDropdown from './currency-dropdown'
-import CurrencyBtnGroup from './currency-btn-group'
+import CurrencyDropdown from './currency/currency-dropdown'
+import CurrencyBtnGroup from './currency/currency-btn-group'
 
 const Header = (props) => {
   const { totalAmount, totalPrice } = useSelector((state) => state.cart)
