@@ -22,11 +22,30 @@ export const sortProductsList = (products, sort, order) => {
   }
 }
 
+export const isRequestFresh = (lastRequest) => {
+  const oneHour = 60 * 60 * 1000
+  const now = new Date().getTime()
+  return now - lastRequest < oneHour
+}
+
+let lastRequest = 0
+let rates = { CAD: 1.36, EUR: 1.03, USD: 1 }
+
 export const getRates = () => {
   const url = 'https://api.exchangerate.host/latest?base=USD&symbols=USD,EUR,CAD'
   const mockRates = { CAD: 1.36, EUR: 1.03, USD: 1 }
 
-  return axios(url)
-    .then(({ data }) => data.rates)
-    .catch(() => mockRates)
+  if (isRequestFresh(lastRequest)) return rates
+
+  return axios
+    .get(url)
+    .then(({ data }) => {
+      lastRequest = new Date().getTime()
+      rates = data.rates
+      return data.rates
+    })
+    .catch((err) => {
+      console.log(err)
+      return mockRates
+    })
 }
