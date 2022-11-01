@@ -1,7 +1,8 @@
 # ecommerce
 
 ## Project Description
-Ecommerce demo project
+Ecommerce demo project<br>
+Open [https://savconstantine-ecommerce.onrender.com/](https://savconstantine-ecommerce.onrender.com/) to view it in the browser.
 
 ## Features
 
