@@ -51,11 +51,7 @@ server.get('/api/v1/products', async (req, res) => {
 server.post('/api/v1/products/search', async (req, res) => {
   const productsArray = await getProducts()
   const { sort, order, search } = req.body
-  const filteredProducts =
-    search !== ''
-      ? productsArray.filter((item) => item.title.toLowerCase().includes(search.toLowerCase()))
-      : productsArray
-  const sortedProducts = sortProductsList(filteredProducts, sort, order)
+  const sortedProducts = sortProductsList(productsArray, sort, order, search)
 
   res.json(sortedProducts.slice(0, 50))
 })

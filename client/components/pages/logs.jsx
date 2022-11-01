@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import Head from './head'
-import Header from './header'
+import Head from '../head'
+import Header from '../header'
 
 const Logs = () => {
   const { logs } = useSelector((state) => state.log)

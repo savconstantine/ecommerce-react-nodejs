@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Head from './head'
-import Header from './header'
-import TableCart from './cart/table'
+import Head from '../head'
+import Header from '../header'
+import TableCart from '../cart/table'
 
 const Cart = () => {
   const productsInCart = useSelector((state) => state.cart.list)

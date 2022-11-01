@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { addToCart } from '../redux/reducers/cart'
+import { addToCart } from '../../redux/reducers/cart'
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch()

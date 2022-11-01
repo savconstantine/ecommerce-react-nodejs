@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import useDebounce from '../../hooks/useDebounce'
 
-import { getProductsWithParams } from '../../redux/reducers/products'
+import { getProductsWithParams, setLoading } from '../../redux/reducers/products'
 
 import SearchInputSVG from '../../assets/images/search-input.svg'
 
@@ -11,7 +11,17 @@ const ProductsSearch = () => {
   const dispatch = useDispatch()
   const { sort, order } = useSelector((state) => state.products)
 
-  useDebounce(() => dispatch(getProductsWithParams(sort, order, searchInput)), 1000, [searchInput])
+  const onChangeHandler = (value) => {
+    setSearchInput(value)
+    dispatch(setLoading(true))
+  }
+  useDebounce(
+    () => {
+      dispatch(getProductsWithParams(sort, order, searchInput))
+    },
+    1000,
+    [searchInput]
+  )
 
   return (
     <div className="inline-flex ">
@@ -29,7 +39,7 @@ const ProductsSearch = () => {
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search"
             value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
+            onChange={(e) => onChangeHandler(e.target.value)}
           />
         </div>
       </form>

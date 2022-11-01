@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { getProductsFromServer } from '../redux/reducers/products'
+import { getProductsFromServer } from '../../redux/reducers/products'
 import ProductCard from './product-card'
-import Search from './products/search'
-import ProductsSortDropdown from './products/sort-dropdown'
-import CurrencyBtnGroup from './currency/currency-btn-group'
+import Search from './search'
+import ProductsSortDropdown from './sort-dropdown'
+import CurrencyBtnGroup from '../currency/currency-btn-group'
+import Loading from './loading'
 
 const Products = () => {
-  const productList = useSelector((state) => state.products.list)
+  const { list: productList, isLoading } = useSelector((state) => state.products)
   const dispatch = useDispatch()
   const productListArray = Object.values(productList)
 
@@ -17,6 +18,16 @@ const Products = () => {
       dispatch(getProductsFromServer())
     }
   }, [])
+
+  const renderProducts = () => {
+    if (isLoading) {
+      return <Loading />
+    }
+    if (productListArray.length === 0) {
+      return <div className="text-center text-2xl text-white">No products found</div>
+    }
+    return productListArray.map((product) => <ProductCard key={product.id} product={product} />)
+  }
 
   return (
     <>
@@ -27,9 +38,7 @@ const Products = () => {
       </div>
 
       <div className="flex flex-wrap gap-2 max-w-screen-lg mx-auto justify-center pt-10">
-        {productListArray.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {renderProducts()}
       </div>
     </>
   )

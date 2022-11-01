@@ -7,18 +7,23 @@ export const getProducts = () => {
     .catch((err) => console.log(err))
 }
 
-export const sortProductsList = (products, sort, order) => {
+export const sortProductsList = (products, sort, order, search = '') => {
+  const filteredProducts =
+    search !== ''
+      ? products.filter((item) => item.title.toLowerCase().includes(search.toLowerCase()))
+      : products
+
   switch (sort) {
     case 'price':
-      return products.sort((a, b) => {
+      return filteredProducts.sort((a, b) => {
         return order === 'asc' ? a.price - b.price : b.price - a.price
       })
     case 'name':
-      return products.sort((a, b) => {
+      return filteredProducts.sort((a, b) => {
         return order === 'asc' ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)
       })
     default:
-      return products
+      return filteredProducts
   }
 }
 

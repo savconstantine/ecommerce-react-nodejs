@@ -5,9 +5,9 @@ import { Switch, Route, Redirect, StaticRouter } from 'react-router-dom'
 
 import store, { history } from '../redux'
 
-import Main from '../components/main'
-import Cart from '../components/cart'
-import Logs from '../components/logs'
+import Main from '../components/pages/main'
+import Cart from '../components/pages/cart'
+import Logs from '../components/pages/logs'
 import NotFound from '../components/404'
 
 import Startup from './startup'

@@ -1,8 +1,8 @@
 import React from 'react'
-import Head from './head'
-import Header from './header'
-import Footer from './footer'
-import Products from './products'
+import Head from '../head'
+import Header from '../header'
+import Footer from '../footer'
+import Products from '../products/products'
 
 const Main = () => {
   const title = 'BrandName'
