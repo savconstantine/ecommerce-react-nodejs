@@ -1,6 +1,9 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
+import CartMinusSVG from '../../assets/images/cart-minus.svg'
+import CartPlusSVG from '../../assets/images/cart-plus.svg'
+
 import { changeItemAmountInCart, removeFromCart } from '../../redux/reducers/cart'
 
 const TableCartRow = ({ id }) => {
@@ -40,19 +43,7 @@ const TableCartRow = ({ id }) => {
             onClick={() => dispatch(changeItemAmountInCart(id, -1))}
           >
             <span className="sr-only">Quantity button</span>
-            <svg
-              className="w-4 h-4"
-              aria-hidden="true"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clipRule="evenodd"
-              />
-            </svg>
+            <CartMinusSVG className="w-4 h-4" />
           </button>
           <div className="product__amout">{productInCart?.amount}</div>
           <button
@@ -61,19 +52,7 @@ const TableCartRow = ({ id }) => {
             onClick={() => dispatch(changeItemAmountInCart(id, +1))}
           >
             <span className="sr-only">Quantity button</span>
-            <svg
-              className="w-4 h-4"
-              aria-hidden="true"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                clipRule="evenodd"
-              />
-            </svg>
+            <CartPlusSVG className="w-4 h-4" />
           </button>
         </div>
       </td>

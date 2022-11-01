@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom'
 import CurrencyDropdown from './currency/currency-dropdown'
 import CurrencyBtnGroup from './currency/currency-btn-group'
 
+import CartSVG from '../assets/images/cart.svg'
+import MenuSVG from '../assets/images/menu.svg'
+
 const Header = (props) => {
   const { totalAmount, totalPrice } = useSelector((state) => state.cart)
   const { currentCurrency } = useSelector((state) => state.settings)
@@ -33,28 +36,7 @@ const Header = (props) => {
           <div className="flex md:order-2">
             <div className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 pr-5 md:px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 flex">
               <Link to="/cart">
-                <svg
-                  width="30px"
-                  height="30px"
-                  viewBox="0 0 512 512"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <polygon
-                    fill="var(--ci-primary-color, currentColor)"
-                    points="160 96.039 160 128.039 464 128.039 464 191.384 428.5 304.039 149.932 304.039 109.932 16 16 16 16 48 82.068 48 122.068 336.039 451.968 336.039 496 196.306 496 96.039 160 96.039"
-                    className="ci-primary"
-                  />
-                  <path
-                    fill="var(--ci-primary-color, currentColor)"
-                    d="M176.984,368.344a64.073,64.073,0,0,0-64,64h0a64,64,0,0,0,128,0h0A64.072,64.072,0,0,0,176.984,368.344Zm0,96a32,32,0,1,1,32-32A32.038,32.038,0,0,1,176.984,464.344Z"
-                    className="ci-primary"
-                  />
-                  <path
-                    fill="var(--ci-primary-color, currentColor)"
-                    d="M400.984,368.344a64.073,64.073,0,0,0-64,64h0a64,64,0,0,0,128,0h0A64.072,64.072,0,0,0,400.984,368.344Zm0,96a32,32,0,1,1,32-32A32.038,32.038,0,0,1,400.984,464.344Z"
-                    className="ci-primary"
-                  />
-                </svg>
+                <CartSVG />
                 {totalAmount ? (
                   <span
                     id="order-count"
@@ -76,19 +58,7 @@ const Header = (props) => {
               aria-expanded={menuOpen ? 'true' : 'false'}
             >
               <span className="sr-only">Open main menu</span>
-              <svg
-                className="w-6 h-6"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <MenuSVG className="w-6 h-6" />
             </button>
           </div>
           <div

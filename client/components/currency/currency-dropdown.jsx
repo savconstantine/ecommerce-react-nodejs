@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux'
 import { getCurrenciesFromServer, setCurrentCurrency } from '../../redux/reducers/settings'
 import useComponentVisible from '../../hooks/useComponentVisible'
 
+import DropdownArrow from '../../assets/images/dropdown-arrow.svg'
+
 const CurrencyDropdown = () => {
   const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false)
   const dispatch = useDispatch()
@@ -22,16 +24,7 @@ const CurrencyDropdown = () => {
         type="button"
         onClick={() => setIsComponentVisible(!isComponentVisible)}
       >
-        <svg
-          className="ml-2 w-4 h-4"
-          aria-hidden="true"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-        </svg>
+        <DropdownArrow className="ml-2 w-4 h-4" />
       </button>
 
       <div
