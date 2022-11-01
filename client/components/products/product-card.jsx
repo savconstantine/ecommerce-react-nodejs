@@ -30,9 +30,6 @@ const ProductCard = ({ product }) => {
             {product.title}
           </h5>
           <p className="font-normal text-gray-700 dark:text-gray-400">{product.description}</p>
-          <span className="mb-3 text-xs font-normal text-gray-700 dark:text-gray-400">
-            {product.id}
-          </span>
         </a>
         <div className="flex items-center mt-2.5 mb-5">
           {stars.map((star) => (

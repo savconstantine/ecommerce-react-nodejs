@@ -37,7 +37,7 @@ const Products = () => {
         <ProductsSortDropdown />
       </div>
 
-      <div className="flex flex-wrap gap-2 max-w-screen-lg mx-auto justify-center pt-10">
+      <div className="flex flex-wrap gap-2 max-w-screen-lg mx-auto justify-center pt-10 mb-10">
         {renderProducts()}
       </div>
     </>
