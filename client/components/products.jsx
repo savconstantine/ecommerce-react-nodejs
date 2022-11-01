@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { getProductsFromServer } from '../redux/reducers/products'
 import ProductCard from './product-card'
+import Search from './products/search'
 import ProductsSortDropdown from './products/sort-dropdown'
 import CurrencyBtnGroup from './currency/currency-btn-group'
 
@@ -19,8 +20,8 @@ const Products = () => {
 
   return (
     <>
-      <div className="flex max-w-screen-lg mx-auto justify-evenly pt-10">
-
+      <div className="flex max-w-screen-lg mx-auto justify-evenly pt-10 flex-wrap gap-5">
+        <Search />
         <CurrencyBtnGroup />
         <ProductsSortDropdown />
       </div>

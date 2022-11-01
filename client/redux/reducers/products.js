@@ -6,7 +6,8 @@ export const SET_SORT_INFO = 'SET_SORT_INFO'
 const initialState = {
   list: {},
   sort: 'name',
-  order: 'asc'
+  order: 'asc',
+  search: ''
 }
 
 export default (state = initialState, action = {}) => {
@@ -20,7 +21,12 @@ export default (state = initialState, action = {}) => {
         }, {})
       }
     case SET_SORT_INFO:
-      return { ...state, sort: action.payload.sort, order: action.payload.order }
+      return {
+        ...state,
+        sort: action.payload.sort,
+        order: action.payload.order,
+        search: action.payload.search
+      }
     default:
       return state
   }
@@ -37,9 +43,9 @@ export const getProductsFromServer = () => {
   }
 }
 
-export const sortProducts = (sort, order) => {
+export const getProductsWithParams = (sort, order, search = '') => {
   return async (dispatch) => {
-    const { data } = await axios.post('/api/v1/products/sort', { sort, order })
+    const { data } = await axios.post('/api/v1/products/search', { sort, order, search })
 
     dispatch({
       type: GET_PRODUCTS,
@@ -48,7 +54,7 @@ export const sortProducts = (sort, order) => {
 
     dispatch({
       type: SET_SORT_INFO,
-      payload: { sort, order }
+      payload: { sort, order, search }
     })
   }
 }

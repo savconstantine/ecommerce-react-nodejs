@@ -48,10 +48,14 @@ server.get('/api/v1/products', async (req, res) => {
   res.json(productsArray.slice(0, 50))
 })
 
-server.post('/api/v1/products/sort', async (req, res) => {
+server.post('/api/v1/products/search', async (req, res) => {
   const productsArray = await getProducts()
-  const { sort, order } = req.body
-  const sortedProducts = sortProductsList(productsArray, sort, order)
+  const { sort, order, search } = req.body
+  const filteredProducts =
+    search !== ''
+      ? productsArray.filter((item) => item.title.toLowerCase().includes(search.toLowerCase()))
+      : productsArray
+  const sortedProducts = sortProductsList(filteredProducts, sort, order)
 
   res.json(sortedProducts.slice(0, 50))
 })
