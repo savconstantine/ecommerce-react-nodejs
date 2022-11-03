@@ -9,7 +9,7 @@ const Html = ({ body }) => {
       <script defer="defer" src="/js/main.bundle.js?v=COMMITHASH1"></script>
       <link href="/css/main.css" rel="stylesheet">
     </head>
-    <body>
+    <body class="dark">
       <div id="root"></div>
     </body>
   </html>
