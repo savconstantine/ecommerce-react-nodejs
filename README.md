@@ -6,7 +6,9 @@ Open [https://savconstantine-ecommerce.onrender.com/](https://savconstantine-eco
 
 ## Features
 
-* Redux
+* React
+* Redux 
+* NodeJS
 * SASS/SCSS: make styles greate again, with no tears
 * TailwindCSS: utility-first CSS framework
 * Modern ES6 for using template strings, JSX syntax, object destructuring arrow functions and more
