@@ -27,30 +27,37 @@ export const sortProductsList = (products, sort, order, search = '') => {
   }
 }
 
-export const isRequestFresh = (lastRequest) => {
-  const oneHour = 60 * 60 * 1000
-  const now = new Date().getTime()
-  return now - lastRequest < oneHour
+function rateChecker() {
+  let ratesRequestDate = 0
+  const msAtHour = 1000 * 60 * 60
+  let currency = {}
+  return {
+    checkDate: (dateMs = 0) => ratesRequestDate + msAtHour <= dateMs,
+    setRateDate(dateMs = 0) {
+      ratesRequestDate = dateMs
+    },
+    setCurrency(newCurrency = {}) {
+      currency = { ...newCurrency }
+    },
+    getRates: () => currency
+  }
 }
 
-let lastRequest = 0
-let rates = { CAD: 1.36, EUR: 1.03, USD: 1 }
+const myRates = rateChecker()
 
-export const getRates = () => {
+export const getRates = async () => {
   const url = 'https://api.exchangerate.host/latest?base=USD&symbols=USD,EUR,CAD'
   const mockRates = { CAD: 1.36, EUR: 1.03, USD: 1 }
 
-  if (isRequestFresh(lastRequest)) return rates
+  const date = +new Date()
 
-  return axios
-    .get(url)
-    .then(({ data }) => {
-      lastRequest = new Date().getTime()
-      rates = data.rates
-      return data.rates
-    })
-    .catch((err) => {
-      console.log(err)
-      return mockRates
-    })
+  if (myRates.checkDate(date)) {
+    await axios(url)
+      .then(({ data }) => data.rates)
+      .then((currency) => myRates.setCurrency(currency))
+      .catch(() => mockRates)
+    myRates.setRateDate(date)
+  }
+
+  return myRates.getRates()
 }
