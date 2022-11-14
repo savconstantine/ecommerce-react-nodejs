@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
-import { getCurrenciesFromServer, setCurrentCurrency } from '../../redux/reducers/settings'
+import { setCurrentCurrency } from '../../redux/reducers/settings'
 import useComponentVisible from '../../hooks/useComponentVisible'
 
 import DropdownArrow from '../../assets/images/dropdown-arrow.svg'
@@ -10,10 +10,6 @@ const CurrencyDropdown = () => {
   const dispatch = useDispatch()
 
   const currencies = ['USD', 'EUR', 'CAD']
-
-  useEffect(() => {
-    dispatch(getCurrenciesFromServer())
-  }, [])
 
   return (
     <div className="inline-flex " ref={ref}>

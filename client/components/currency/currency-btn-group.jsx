@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
-import { getCurrenciesFromServer, setCurrentCurrency } from '../../redux/reducers/settings'
+import { setCurrentCurrency } from '../../redux/reducers/settings'
 
 const CurrencyBtnGroup = () => {
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(getCurrenciesFromServer())
-  }, [])
 
   return (
     <div className="inline-flex rounded-md shadow-sm md:ml-2" role="group">
