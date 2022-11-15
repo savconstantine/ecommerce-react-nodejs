@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setCurrentCurrency } from '../../redux/reducers/settings'
 import useComponentVisible from '../../hooks/useComponentVisible'
 
@@ -9,7 +9,7 @@ const CurrencyDropdown = () => {
   const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false)
   const dispatch = useDispatch()
 
-  const currencies = ['USD', 'EUR', 'CAD']
+  const { currencies } = useSelector((state) => state.settings)
 
   return (
     <div className="inline-flex " ref={ref}>
@@ -33,7 +33,7 @@ const CurrencyDropdown = () => {
           className="py-1 text-sm text-gray-700 dark:text-gray-200"
           aria-labelledby="dropdownDefault"
         >
-          {currencies.map((currency) => (
+          {Object.keys(currencies).map((currency) => (
             <li key={currency}>
               <button
                 type="button"

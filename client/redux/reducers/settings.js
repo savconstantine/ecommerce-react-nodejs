@@ -5,7 +5,7 @@ export const SET_CURRENT_CURRENCY = '@settings/SET_CURRENT_CURRENCY'
 const CHECK_CURRENCY_DATE = '@settings/CHECK_RATE_DATE'
 
 const initialState = {
-  currencies: { USD: 1 },
+  currencies: { USD: 1, EUR: 1, GBP: 1 },
   currentCurrency: 'USD',
   currencyDate: 0
 }
